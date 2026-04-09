@@ -9,7 +9,11 @@
 
 ## 1. Giới thiệu dự án
 
-Dự án phát triển trò chơi 2048 viết bằng ngôn ngữ C++. Phần giao diện đồ họa được xử lý bằng thư viện SDL2. Dự án được thực hiện phục vụ môn học Lập trình nâng cao (Mã LHP: INT2215 21) - Nhóm 05.
+Dự án phát triển trò chơi 2048 viết bằng ngôn ngữ C++. Phần giao diện đồ họa được xử lý bằng thư viện SDL2. 
+
+- **Môn học:** Lập trình nâng cao
+- **Mã LHP:** INT2215 21
+- **Nhóm:** 05
 
 ## 2. Chức năng chính
 
