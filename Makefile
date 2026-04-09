@@ -9,8 +9,8 @@ SOURCES = src/main.cpp src/logic.cpp
 TEST_SOURCES = tests/test_logic.cpp src/logic.cpp
 
 # File output
-OUTPUT = Game2048.exe
-TEST_OUTPUT = run_test.exe
+OUTPUT = build/Game2048.exe
+TEST_OUTPUT = build/run_test.exe
 
 # Tự tìm đường dẫn SDL2 theo hệ điều hành
 ifeq ($(OS),Windows_NT)
@@ -24,7 +24,7 @@ else
     SDL_INCLUDE = $(shell pkg-config --cflags sdl2 SDL2_gfx SDL2_ttf)
     SDL_LIB =
     SDL_FLAGS = $(shell pkg-config --libs sdl2 SDL2_gfx SDL2_ttf)
-    OUTPUT = Game2048
+    OUTPUT = build/Game2048
     RUN = ./$(OUTPUT)
 endif
 

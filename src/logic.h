@@ -12,15 +12,15 @@
 
 class Game2048 {
 private:
-    int bang[4][4];
+    int bang_o[4][4];
     int diem_so;
 
 public:
     Game2048();
-    void datLaiTieude();
+    void khoiTaoLaiBang();
     
     int layDiemSo();
-    int layGiaTriO(int hang, int cot);
+    int layGiaTriTaiO(int hang, int cot);
     
     void sinhSoMoi();
     
