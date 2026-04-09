@@ -1,105 +1,126 @@
-# Dự án Game 2048 (C++)
+<div align="center">
+  <h1>Game 2048 (C++ & SDL2)</h1>
 
-- **Môn học:** Lập trình nâng cao
-- **Mã LHP:** INT2215 21
-- **Nhóm:** 05
+  [![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://cplusplus.com/)
+  [![SDL2](https://img.shields.io/badge/SDL2-222222?style=for-the-badge&logo=sdl&logoColor=white)](https://www.libsdl.org/)
+</div>
 
-Dự án này là game 2048 viết bằng ngôn ngữ C++. Phần giao diện đồ họa sử dụng thư viện SDL2.
+---
 
-## Chức năng chính
+## 1. Giới thiệu dự án
 
-- Tạo bảng lưới 4x4.
-- Nhận phím từ người chơi (phím mũi tên hoặc W/A/S/D) để di chuyển các ô số.
-- Hiển thị bảng số bằng các ô vuông bo góc với màu sắc khác nhau.
-- Cập nhật điểm hiện tại và lưu điểm cao nhất.
+Dự án phát triển trò chơi 2048 viết bằng ngôn ngữ C++. Phần giao diện đồ họa được xử lý bằng thư viện SDL2. Dự án được thực hiện phục vụ môn học Lập trình nâng cao (Mã LHP: INT2215 21) - Nhóm 05.
 
-## Quy trình hoạt động
+## 2. Chức năng chính
 
-Game chạy theo 4 bước:
+- Khởi tạo bảng lưới 4x4 hiển thị tự động.
+- Nhận luồng điều khiển qua bàn phím (Phím mũi tên hoặc W, A, S, D) để dồn các ô số.
+- Cập nhật tự động ma trận lưới thông qua cơ chế gộp ô cùng giá trị.
+- Hiển thị điểm số hiện tại và điểm kỷ lục chơi.
+- Cấu trúc source code tổ chức minh bạch có tách rời phần logic và phần giao diện.
 
-1. **Khởi tạo**: Bảng 4x4 ban đầu tất cả ô đều bằng 0. Sinh ngẫu nhiên 2 số (2 hoặc 4) vào 2 ô trống.
-2. **Chờ phím**: Chờ người chơi bấm phím để chọn hướng di chuyển (Trái/Phải/Lên/Xuống).
-3. **Di chuyển và gộp số**:
-   - Dồn tất cả ô có giá trị khác 0 về phía người chơi chọn.
-   - Nếu 2 ô liền kề có giá trị bằng nhau thì gộp thành 1 ô có giá trị gấp đôi.
-   - Cập nhật điểm.
-4. **Kiểm tra kết thúc**: Sau mỗi lần di chuyển thành công, sinh thêm 1 số mới vào ô trống. Nếu tất cả 16 ô đã đầy và không còn 2 ô liền kề nào bằng nhau thì hiển thị Game Over.
+---
 
-Sơ đồ xử lý:
-
-```mermaid
-graph TD
-    A[Khởi tạo bảng 4x4, tất cả ô bằng 0] --> B[Sinh 2 số ngẫu nhiên vào ô trống]
-    B --> C{Chờ người chơi bấm phím}
-    C -->|Đã bấm phím| D[Dồn các ô khác 0 về hướng đã chọn]
-    D --> E{Có 2 ô liền kề bằng nhau không?}
-    E -->|Có| F[Gộp 2 ô thành 1, giá trị nhân 2, cộng điểm]
-    E -->|Không| G[Giữ nguyên vị trí]
-    F --> G
-    G --> H[Vẽ lại giao diện]
-    H --> I{Bảng có thay đổi so với trước không?}
-    I -->|Có| J[Sinh thêm 1 số ngẫu nhiên vào ô trống]
-    I -->|Không| C
-    J --> K{Còn nước đi hợp lệ không?}
-    K -->|Còn| C
-    K -->|Không còn| L[Hiển thị Game Over]
-```
-
-## Cấu trúc thư mục
+## 3. Cấu trúc thư mục
 
 ```text
 Game 2048/
-├── build/                 # Thư mục chứa các file thực thi sau khi biên dịch
-│   ├── Game2048.exe       # File game sau khi build
-│   └── run_test.exe       # File test sau khi build
-├── src/                   # Thư mục chứa mã nguồn chính
-│   ├── logic.h            # Khai báo cấu trúc và các hàm logic của game
-│   ├── logic.cpp          # Triển khai phần xử lý thuật toán dồn ô, gộp số và tính điểm
-│   └── main.cpp           # Thiết kế giao diện bằng SDL2 và vòng lặp trò chơi
-├── tests/                 # Thư mục chứa các file kiểm thử (Unit test)
-│   └── test_logic.cpp     # File kiểm tra logic hệ thống
-├── Makefile               # File kịch bản cấu hình cho quá trình tự động theo dõi và build source
-└── README.md              # Tài liệu cập nhật thông tin dự án
+├── build/                 # Thư mục chứa file thực thi (.exe) sau khi biên dịch
+│   ├── Game2048.exe       # Tệp khởi chạy trò chơi
+│   └── run_test.exe       # Tệp kiểm thử bộ điều hướng logic
+├── src/                   # Thư mục chứa mã nguồn chính của dự án 
+│   ├── logic.h            # Khai báo cấu trúc biến và các hàm logic nội tại
+│   ├── logic.cpp          # Triển khai thuật toán sinh số, dịch chuyển và quy đổi logic
+│   └── main.cpp           # Xử lý vòng lặp đồ họa bằng SDL2 và nhận diện phím bấm
+├── tests/                 # Thư mục chứa các script độc lập kiểm thử Unit Test
+│   └── test_logic.cpp     # File kiểm tra tính chính xác của hàm xử lý bảng ô số
+├── Makefile               # File cấu hình lệnh tự động môi trường biên dịch hệ thống
+└── README.md              # Tài liệu mô tả cấu trúc và hoạt động của dự án
 ```
 
-## Ví dụ xử lý (Input/Output)
+---
 
-Giả sử có một hàng với giá trị: `[2, 2, 4, 0]`.
-- **Input**: Người chơi bấm phím **sang trái**.
-- **Output**: 2 ô giá trị 2 liền kề được gộp thành 4. Kết quả: `[4, 4, 0, 0]`.
+## 4. Sơ đồ luồng xử lý
 
-## Chạy Unit Test
+Mô hình miêu tả quá trình vận hành vòng đời dữ liệu của game:
 
-Dự án có file test trong thư mục `tests`, dùng để kiểm tra logic xử lý (không cần giao diện đồ họa).
-
-Chạy bằng lệnh:
-```bash
-mingw32-make test
-# (Hoặc `make test` đối với Linux/macOS)
+```mermaid
+graph TD
+    A[Khởi tạo mảng lưới 4x4 bằng 0] --> B[Sinh ngẫu nhiên 2 số đầu tiên vào ô trống]
+    B --> C{Chờ người chơi phản hồi bàn phím}
+    C -->|Xác nhận điều hướng | D[Dịch chuyển tất cả ô khác 0 về đầu ranh giới]
+    D --> E{Có hai khối sát nhau đồng giá trị?}
+    E -->|Có| F[Cộng gộp hai khối, thay bằng giá trị x2, tích lũy điểm]
+    E -->|Không| G[Cập nhật định vị tọa độ mới]
+    F --> G
+    G --> H[Vẽ lại giao diện]
+    H --> I{Thuật toán sinh sai số mảng so với mảng ban đầu?}
+    I -->|Có| J[Gán 1 khối 2 hoặc 4 vào vị trí trống ngẫu nhiên]
+    I -->|Không| C
+    J --> K{Bảng còn duy trì được nước chạy tiếp theo không?}
+    K -->|Còn| C
+    K -->|Không| L[Kích hoạt trạng thái Thua, Game Over]
 ```
 
-## Chạy game đầy đủ (có giao diện)
+## 5. Ví dụ xử lý (Input/Output thuật toán gộp)
 
-Game cần được cài thư viện SDL2, SDL2_gfx, SDL2_ttf trước. Dự án đã có sẵn `Makefile` rất dễ dàng sử dụng.
+Quá trình gộp được tính thông qua input trực tiếp. Dưới đây là ví dụ đường trượt cơ bản.
+- Biến mảng đầu vào: `[2, 2, 4, 0]`
+- Điều kiện Input: Nhập dịch chuyển sang hướng bên TRÁI.
+- Output sinh ra: 2 ô giá trị `2` dồn lại gộp thành `4`.
+- Kết quả cập nhật: `[4, 4, 0, 0]`
 
-Mở Terminal / Command Prompt tại thư mục chứa dự án và chạy các lệnh dưới đây:
+---
 
-**Trên Windows (dùng MinGW/MSYS2):**
+## 6. Hướng dẫn cài đặt và biên dịch
+
+Hệ thống máy tính cần cấu hình trình biên dịch C++ (`gcc`, `g++`) và chương trình `make`. Dự án yêu cầu liên kết thư viện đồ họa `SDL2`, `SDL2_gfx` và `SDL2_ttf`.
+
+### Trên hệ điều hành Windows
+Mở Terminal hoặc Command Prompt tại thư mục chứa dự án.
+
+**Bước 1: Biên dịch chương trình**
 ```bash
-# Lệnh build thành file exe
 mingw32-make
+```
 
-# Lệnh khởi chạy
+**Bước 2: Khởi chạy trò chơi**
+```bash
 .\build\Game2048.exe
 ```
 
-**Trên Linux / macOS:**
+### Trên hệ điều hành macOS / Linux
+**Bước 1: Biên dịch chương trình**
 ```bash
-# Lệnh build
 make
+```
 
-# Lệnh khởi chạy
+**Bước 2: Khởi chạy trò chơi**
+```bash
 ./build/Game2048
 ```
 
-> **Lưu ý:** Nếu muốn tự chạy kiểm tra unit test hoặc dọn dẹp thư mục: dùng lệnh `make test` hoặc `make clean`.
+---
+
+## 7. Chạy Unit Test và Dọn dẹp rác bộ nhớ
+
+Dành cho môi trường theo dõi dữ liệu không thông qua đồ hoạ:
+
+**Chạy kiểm thử logic độc lập:**
+Phần test code kiểm tra sự độc lập của thuật toán nằm tại `tests/test_logic.cpp`.
+```bash
+# Đối với Windows
+mingw32-make test
+
+# Đối với macOS / Linux
+make test
+```
+
+**Xoá tệp thực thi kết quả lưu lại từ build cũ:**
+```bash
+# Đối với Windows
+mingw32-make clean
+
+# Đối với macOS / Linux
+make clean
+```
