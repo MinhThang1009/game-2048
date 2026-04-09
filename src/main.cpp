@@ -388,8 +388,38 @@ int main(int argc, char *args[]) {
           game.sinhSoMoi();
         }
 
-        if (game.kiemTraCoTheDiChuyen() == false) {
+        if (game.kiemTraCoTheDiChuyen() == false && !da_thua) {
           da_thua = true;
+          
+          // Cập nhật giao diện màn hình thua ngay trước khi bật hộp thoại
+          veGiaoDien(renderer, font_o, font_tieu_de, font_nho, game);
+          
+          const SDL_MessageBoxButtonData cac_nut[] = {
+              { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 0, "Đóng" },
+              { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "Chơi lại" }
+          };
+          
+          string thong_bao = "Không còn nước đi nào! Điểm của bạn là: " + to_string(game.layDiemSo()) + "\nBạn có muốn chơi lại không?";
+          const SDL_MessageBoxData hop_thoai = {
+              SDL_MESSAGEBOX_INFORMATION,
+              cua_so,
+              "Trò chơi kết thúc",
+              thong_bao.c_str(),
+              2,
+              cac_nut,
+              NULL
+          };
+          
+          int nut_duoc_chon;
+          // Hiển thị hộp thoại khi thua cuộc
+          if (SDL_ShowMessageBox(&hop_thoai, &nut_duoc_chon) >= 0) {
+              if (nut_duoc_chon == 1) {
+                  game.khoiTaoLaiBang();
+                  da_thua = false;
+                  game.sinhSoMoi();
+                  game.sinhSoMoi();
+              }
+          }
         }
       }
     }
