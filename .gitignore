@@ -1,0 +1,11 @@
+# File thực thi
+*.exe
+
+# Thư mục build
+build/
+
+# Thư mục VSCode
+.vscode/
+
+# Ignore file log tạm
+temp_git_log.txt
