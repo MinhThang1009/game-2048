@@ -52,27 +52,25 @@ Mô hình miêu tả quá trình vận hành vòng đời dữ liệu của game
 
 ```mermaid
 graph TD
-    A([Bật trò chơi]) --> N[Khởi tạo bảng 4x4 bằng 0]
+    A([Bật trò chơi]) --> N[Khởi tạo bảng 4x4 về 0 và đặt điểm về 0]
     N --> B[Sinh 2 số ngẫu nhiên vào bảng]
     B --> H[Vẽ giao diện lên cửa sổ]
-    H --> C{Chờ sự kiện phím / chuột}
+    H --> C{Chờ sự kiện phím hoặc chuột}
 
-    C -->|Nhấn nút X cửa sổ| O([Đóng Game])
+    C -->|Nhấn X đóng cửa sổ| O([Thoát game])
 
-    C -->|Nhấn nút Chơi Mới| P{Hộp thoại Xác nhận}
+    C -->|Nhấn nút Chơi Mới| P{Hộp thoại xác nhận}
     P -->|Hủy| H
     P -->|Bắt đầu| N
 
-    C -->|Phím điều hướng và chưa thua| D["Gọi hàm diChuyen*(): dồn ô + gộp cặp bằng nhau + cộng điểm"]
+    C -->|Phím điều hướng - chưa thua| D["Gọi diChuyen(): dồn ô, gộp cặp bằng nhau, cộng điểm"]
     D --> I{Bảng có thay đổi?}
-    I -->|Không| K
+    I -->|Không| H
     I -->|Có| J[Sinh 1 số mới vào ô trống]
-
     J --> K{Còn nước đi hợp lệ?}
     K -->|Còn| H
     K -->|Hết| L[Vẽ lớp phủ Game Over lên bảng]
-
-    L --> M{Hộp thoại Tổng kết}
+    L --> M{Hộp thoại tổng kết}
     M -->|Chơi lại| N
     M -->|Thoát| O
 ```
