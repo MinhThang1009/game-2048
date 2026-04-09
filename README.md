@@ -53,31 +53,28 @@ Mô hình miêu tả quá trình vận hành vòng đời dữ liệu của game
 ```mermaid
 graph TD
     A([Bật trò chơi]) --> N[Khởi tạo bảng 4x4 bằng 0]
-    N --> B[Sinh 2 khối số ngẫu nhiên ban đầu]
-    B --> H[Vẽ cập nhật lên giao diện]
-    H --> C{Chờ thao tác phím / chuột}
+    N --> B[Sinh 2 số ngẫu nhiên vào bảng]
+    B --> H[Vẽ giao diện lên cửa sổ]
+    H --> C{Chờ sự kiện phím / chuột}
 
-    C -->|Nút Chơi Mới| P{Hộp thoại Xác nhận}
+    C -->|Nhấn nút X cửa sổ| O([Đóng Game])
+
+    C -->|Nhấn nút Chơi Mới| P{Hộp thoại Xác nhận}
     P -->|Hủy| H
-    P -->|Đồng ý| N
+    P -->|Bắt đầu| N
 
-    C -->|Phím điều hướng| D[Dồn các ô cùng về 1 hướng]
-    D --> E{Có khối liền kề đồng giá trị?}
-    E -->|Có| F[Cộng gộp ô x2, lưu điểm]
-    E -->|Không| G[Cập nhật tọa độ mới]
-    F --> G
-    
-    G --> I{Bảng có sự dịch chuyển?}
-    I -->|Không| H
-    I -->|Có| J[Sinh ngẫu nhiên 1 khối số mới]
-    
+    C -->|Phím điều hướng và chưa thua| D["Gọi hàm diChuyen*(): dồn ô + gộp cặp bằng nhau + cộng điểm"]
+    D --> I{Bảng có thay đổi?}
+    I -->|Không| K
+    I -->|Có| J[Sinh 1 số mới vào ô trống]
+
     J --> K{Còn nước đi hợp lệ?}
     K -->|Còn| H
-    K -->|Hết| L[Phủ sương mù rèm Game Over]
-    
+    K -->|Hết| L[Vẽ lớp phủ Game Over lên bảng]
+
     L --> M{Hộp thoại Tổng kết}
     M -->|Chơi lại| N
-    M -->|Thoát| O([Đóng Game])
+    M -->|Thoát| O
 ```
 
 ## 5. Ví dụ xử lý (Input/Output thuật toán gộp)
