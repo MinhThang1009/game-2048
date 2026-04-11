@@ -347,7 +347,8 @@ int main(int argc, char *args[]) {
       if (su_kien.type == SDL_QUIT) {
         dang_choi = false;
 
-      } else if (su_kien.type == SDL_MOUSEBUTTONUP) {
+      } else if (su_kien.type == SDL_MOUSEBUTTONUP &&
+                 su_kien.button.button == SDL_BUTTON_LEFT) {
         int chuot_x = su_kien.button.x;
         int chuot_y = su_kien.button.y;
         if (chuot_x >= nut_choi_moi.x &&
