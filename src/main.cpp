@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Mục đích: Hiển thị giao diện game 2048 bằng SDL2.
  * Chức năng: Xử lý sự kiện bàn phím, chuột và vẽ bảng game lên cửa sổ.
  */
@@ -329,9 +329,15 @@ int main(int argc, char *args[]) {
   if (!renderer)
     return 1;
 
+  // Thử mở ở thư mục hiện hành trước, nếu báo lỗi (không tìm thấy tệp) thì gán hướng tới thư mục build/
   TTF_Font *font_o = TTF_OpenFont("font.ttf", 46);
+  if (!font_o) font_o = TTF_OpenFont("build/font.ttf", 46);
+
   TTF_Font *font_tieu_de = TTF_OpenFont("font.ttf", 64);
+  if (!font_tieu_de) font_tieu_de = TTF_OpenFont("build/font.ttf", 64);
+
   TTF_Font *font_nho = TTF_OpenFont("font.ttf", 16);
+  if (!font_nho) font_nho = TTF_OpenFont("build/font.ttf", 16);
 
   if (!font_o || !font_tieu_de || !font_nho)
     return 1;

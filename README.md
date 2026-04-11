@@ -137,15 +137,36 @@ Sau khi thêm xong, **mở terminal mới** để PATH có hiệu lực.
 
 **Bước 7: Chuẩn bị font**
 
-Font không được commit lên GitHub. Sau khi clone về, chạy lệnh sau để tạo thư mục `assets/` và sao chép font:
-```bash
+Font không được commit lên GitHub. Sau khi clone về, cần tạo thư mục `assets/` và sao chép font vào.
+
+Nếu dùng **CMD**:
+```cmd
 mkdir assets
 copy C:\Windows\Fonts\arialbd.ttf assets\font.ttf
 ```
 
+Nếu dùng **PowerShell**:
+```powershell
+mkdir assets
+Copy-Item C:\Windows\Fonts\arialbd.ttf assets\font.ttf
+```
+
+Nếu dùng **MSYS2 terminal**:
+```bash
+mkdir -p assets
+cp /c/Windows/Fonts/arialbd.ttf assets/font.ttf
+```
+
+> Nếu bỏ qua bước này, lệnh `mingw32-make` sẽ báo lỗi không tìm thấy font.
+
 **Bước 8: Biên dịch và chạy game**
 
-Mở terminal tại thư mục dự án, chạy lần lượt:
+Mở terminal tại thư mục dự án, chạy:
+```bash
+mingw32-make run
+```
+
+Hoặc biên dịch và chạy thủ công:
 ```bash
 mingw32-make
 .\build\Game2048.exe
