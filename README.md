@@ -214,7 +214,7 @@ mingw32-make test
 make test
 ```
 
-**Xóa file .exe từ build cũ:**
+**Xóa file thực thi trong build/:**
 ```bash
 # Đối với Windows
 mingw32-make clean
