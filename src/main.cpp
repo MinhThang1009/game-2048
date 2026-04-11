@@ -327,6 +327,8 @@ int main(int argc, char *args[]) {
 
   SDL_Renderer *renderer =
       SDL_CreateRenderer(cua_so, -1, SDL_RENDERER_ACCELERATED);
+  if (!renderer)
+    return 1;
 
   TTF_Font *font_o = TTF_OpenFont("assets/font.ttf", 46);
   TTF_Font *font_tieu_de = TTF_OpenFont("assets/font.ttf", 64);
