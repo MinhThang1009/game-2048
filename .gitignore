@@ -9,3 +9,6 @@ build/
 
 # Ignore file log tạm
 temp_git_log.txt
+
+# Font
+assets/font.ttf

@@ -31,9 +31,9 @@ Dự án phát triển trò chơi 2048 viết bằng ngôn ngữ C++. Phần gia
 
 ```text
 Game 2048/
-├── build/                 # Thư mục chứa file .exe sau khi biên dịch
-│   ├── Game2048.exe       # File chạy game
-│   └── run_test.exe       # File chạy unit test
+├── assets/                # Thư mục chứa font (không được commit lên GitHub)
+│   └── font.ttf           # Font chữ dùng để vẽ số và tiêu đề (tự thêm vào)
+├── build/                 # Thư mục chứa file thực thi sau khi biên dịch
 ├── src/                   # Thư mục chứa mã nguồn chính
 │   ├── logic.h            # Khai báo biến toàn cục và các hàm xử lý logic
 │   ├── logic.cpp          # Xử lý sinh số, di chuyển ô, gộp số, tính điểm
@@ -132,7 +132,15 @@ Thêm `C:\msys64\ucrt64\bin` vào biến môi trường PATH của Windows để
 
 Sau khi thêm xong, **mở terminal mới** để PATH có hiệu lực.
 
-**Bước 7: Biên dịch và chạy game**
+**Bước 7: Chuẩn bị font**
+
+Font không được commit lên GitHub. Sau khi clone về, chạy lệnh sau để tạo thư mục `assets/` và sao chép font:
+```bash
+mkdir assets
+copy C:\Windows\Fonts\arialbd.ttf assets\font.ttf
+```
+
+**Bước 8: Biên dịch và chạy game**
 
 Mở terminal tại thư mục dự án, chạy lần lượt:
 ```bash
@@ -153,7 +161,16 @@ Xem hướng dẫn tại: https://brew.sh/
 brew install sdl2 sdl2_gfx sdl2_ttf
 ```
 
-**Bước 3: Biên dịch và chạy game**
+**Bước 3: Chuẩn bị font**
+
+Game đọc font tại `assets/font.ttf`. Sao chép bất kỳ file `.ttf` nào có sẵn trên máy vào thư mục `assets/` và đổi tên thành `font.ttf`. Ví dụ:
+```bash
+cp /Library/Fonts/Arial\ Bold.ttf assets/font.ttf
+# Hoặc dùng font có sẵn trong hệ thống
+cp /System/Library/Fonts/Helvetica.ttc assets/font.ttf
+```
+
+**Bước 4: Biên dịch và chạy game**
 ```bash
 make
 ./build/Game2048
@@ -168,7 +185,16 @@ make
 sudo apt install g++ make libsdl2-dev libsdl2-gfx-dev libsdl2-ttf-dev
 ```
 
-**Bước 2: Biên dịch và chạy game**
+**Bước 2: Chuẩn bị font**
+
+Game đọc font tại `assets/font.ttf`. Sao chép bất kỳ file `.ttf` nào có sẵn trên máy vào thư mục `assets/` và đổi tên thành `font.ttf`. Ví dụ:
+```bash
+cp /usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf assets/font.ttf
+# Nếu chưa có Liberation fonts thì cài trước
+sudo apt install fonts-liberation
+```
+
+**Bước 3: Biên dịch và chạy game**
 ```bash
 make
 ./build/Game2048

@@ -328,9 +328,9 @@ int main(int argc, char *args[]) {
   SDL_Renderer *renderer =
       SDL_CreateRenderer(cua_so, -1, SDL_RENDERER_ACCELERATED);
 
-  TTF_Font *font_o = TTF_OpenFont("C:\\Windows\\Fonts\\arialbd.ttf", 46);
-  TTF_Font *font_tieu_de = TTF_OpenFont("C:\\Windows\\Fonts\\arialbd.ttf", 64);
-  TTF_Font *font_nho = TTF_OpenFont("C:\\Windows\\Fonts\\arialbd.ttf", 16);
+  TTF_Font *font_o = TTF_OpenFont("assets/font.ttf", 46);
+  TTF_Font *font_tieu_de = TTF_OpenFont("assets/font.ttf", 64);
+  TTF_Font *font_nho = TTF_OpenFont("assets/font.ttf", 16);
 
   if (!font_o || !font_tieu_de || !font_nho)
     return 1;
