@@ -33,6 +33,7 @@ all: $(OUTPUT)
 
 $(OUTPUT): $(SOURCES)
 	$(CXX) $(SOURCES) -o $(OUTPUT) $(SDL_INCLUDE) $(SDL_LIB) $(SDL_FLAGS)
+	cp assets/font.ttf build/font.ttf
 
 # Build va chay game
 run: $(OUTPUT)

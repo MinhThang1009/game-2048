@@ -34,7 +34,9 @@ Game 2048/
 ├── assets/                # Thư mục chứa font (không được commit lên GitHub)
 │   └── font.ttf           # Font chữ dùng để vẽ số và tiêu đề (tự thêm vào)
 ├── build/                 # Thư mục chứa file thực thi sau khi biên dịch
-│   └── .gitkeep           # File rỗng để git giữ lại thư mục build/ sau khi clone
+│   ├── .gitkeep           # File rỗng để git giữ lại thư mục build/ sau khi clone
+│   ├── font.ttf           # Font được chép tự động từ assets/ khi build
+│   └── Game2048.exe       # File chạy game (sinh ra sau khi build)
 ├── src/                   # Thư mục chứa mã nguồn chính
 │   ├── logic.h            # Khai báo biến toàn cục và các hàm xử lý logic
 │   ├── logic.cpp          # Xử lý sinh số, di chuyển ô, gộp số, tính điểm

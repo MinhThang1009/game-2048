@@ -8,7 +8,6 @@
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include <SDL2/SDL_ttf.h>
 #include <ctime>
-#include <iostream>
 #include <string>
 
 
@@ -330,9 +329,9 @@ int main(int argc, char *args[]) {
   if (!renderer)
     return 1;
 
-  TTF_Font *font_o = TTF_OpenFont("assets/font.ttf", 46);
-  TTF_Font *font_tieu_de = TTF_OpenFont("assets/font.ttf", 64);
-  TTF_Font *font_nho = TTF_OpenFont("assets/font.ttf", 16);
+  TTF_Font *font_o = TTF_OpenFont("font.ttf", 46);
+  TTF_Font *font_tieu_de = TTF_OpenFont("font.ttf", 64);
+  TTF_Font *font_nho = TTF_OpenFont("font.ttf", 16);
 
   if (!font_o || !font_tieu_de || !font_nho)
     return 1;
