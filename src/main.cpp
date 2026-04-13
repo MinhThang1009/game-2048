@@ -382,6 +382,7 @@ int main(int argc, char *args[]) {
     while (SDL_PollEvent(&su_kien) != 0) {
       if (su_kien.type == SDL_QUIT) {
         dang_choi = false;
+        break;
 
       } else if (su_kien.type == SDL_MOUSEBUTTONUP &&
                  su_kien.button.button == SDL_BUTTON_LEFT) {
@@ -484,6 +485,7 @@ int main(int argc, char *args[]) {
             if (nut_duoc_chon == 0) {
               // Chọn "Thoát"
               dang_choi = false;
+              break;
             } else {
               // Chọn "Chơi mới": Reset lại toàn bộ
               khoiTaoLaiBang();
@@ -497,6 +499,7 @@ int main(int argc, char *args[]) {
           } else {
             // Ngầm định "Thoát" nếu người chơi bấm nút X đóng hộp thoại
             dang_choi = false;
+            break;
           }
         }
 
@@ -536,7 +539,11 @@ int main(int argc, char *args[]) {
               SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
             } else {
               dang_choi = false; // Thoát nếu không chọn chơi lại
+              break;
             }
+          } else {
+            dang_choi = false;
+            break;
           }
         }
       }
