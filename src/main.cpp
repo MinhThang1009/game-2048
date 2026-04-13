@@ -377,8 +377,13 @@ int main(int argc, char *args[]) {
   if (!font_nho)
     font_nho = TTF_OpenFont("C:\\Windows\\Fonts\\arialbd.ttf", 16);
 
-  if (!font_o || !font_tieu_de || !font_nho)
+  if (!font_o || !font_tieu_de || !font_nho) {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(cua_so);
+    TTF_Quit();
+    SDL_Quit();
     return 1;
+  }
 
   SDL_Event su_kien;
 
