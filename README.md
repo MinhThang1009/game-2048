@@ -69,10 +69,10 @@ flowchart TD
     C -- Phím điều hướng\nvà chưa thua --> D["Gọi diChuyen():\ndồn ô + gộp cặp bằng nhau\n+ cộng điểm"]
     D --> I{Bảng có\nthay đổi?}
     I -- Có --> J[Sinh 1 số mới\nvào ô trống]
-    J --> W{Tạo được\nô 2048?}
+    J --> W{Đạt được\nmục tiêu?}
     W -- Có --> W1["Gán trạng thái thắng\nvà vẽ màn hình vàng"]
     W1 --> W2{Hộp thoại\nchúc mừng}
-    W2 -- Chơi tiếp --> K
+    W2 -- Thoát --> O
     W2 -- Chơi mới --> N
     W -- Không --> K{Còn nước đi\nhợp lệ?}
     I -- Không --> K
@@ -100,7 +100,7 @@ Dự án cần: trình biên dịch `g++`, lệnh `make`, và 3 thư viện `SDL
 
 ---
 
-### Trên hệ điều hành Windows
+### 6.1. Trên hệ điều hành Windows
 
 Dự án dùng **MSYS2** để cung cấp `g++`, `make` và các thư viện SDL2 trên Windows.
 
@@ -181,7 +181,7 @@ mingw32-make
 
 ---
 
-### Trên hệ điều hành macOS
+### 6.2. Trên hệ điều hành macOS
 
 **Bước 1: Cài Homebrew** (nếu chưa có)
 
@@ -215,7 +215,7 @@ DYLD_LIBRARY_PATH=/opt/homebrew/lib ./build/Game2048
 
 ---
 
-### Trên hệ điều hành Linux (Ubuntu / Debian)
+### 6.3. Trên hệ điều hành Linux (Ubuntu / Debian)
 
 **Bước 1: Cài g++, make và 3 thư viện SDL2**
 ```bash
