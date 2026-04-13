@@ -22,7 +22,7 @@ Dự án phát triển trò chơi 2048 viết bằng ngôn ngữ C++. Phần gia
 - Gộp 2 ô cùng giá trị khi nằm liền kề theo hướng di chuyển và cộng điểm.
 - Hiển thị điểm số hiện tại và điểm kỷ lục.
 - Hiển thị hộp thoại xác nhận khi bấm nút Chơi Mới để tránh mất tiến trình do bấm nhầm.
-- Hiển thị hộp thoại chúc mừng chiến thắng (màn hình vàng) khi đạt được ô 2048, cho phép chọn "Chơi tiếp" hoặc "Chơi mới".
+- Hiển thị hộp thoại chúc mừng chiến thắng (màn hình vàng) khi đạt được mục tiêu thắng, cho phép chọn "Thoát" hoặc "Chơi mới".
 - Hiển thị hộp thoại tổng kết khi thua (Game Over), cho phép chơi lại hoặc thoát.
 - Hỗ trợ tốt trên nhiều hệ điều hành và xử lý lỗi font, `#pragma utf-8` để hiển thị tiếng Việt chuẩn.
 - Tách rời phần logic và phần giao diện thành các file riêng.
