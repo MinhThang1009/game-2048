@@ -22,7 +22,9 @@ Dự án phát triển trò chơi 2048 viết bằng ngôn ngữ C++. Phần gia
 - Gộp 2 ô cùng giá trị khi nằm liền kề theo hướng di chuyển và cộng điểm.
 - Hiển thị điểm số hiện tại và điểm kỷ lục.
 - Hiển thị hộp thoại xác nhận khi bấm nút Chơi Mới để tránh mất tiến trình do bấm nhầm.
+- Hiển thị hộp thoại chúc mừng chiến thắng (màn hình vàng) khi đạt được ô 2048, cho phép chọn "Chơi tiếp" hoặc "Chơi mới".
 - Hiển thị hộp thoại tổng kết khi thua (Game Over), cho phép chơi lại hoặc thoát.
+- Hỗ trợ tốt trên nhiều hệ điều hành và xử lý lỗi font, `#pragma utf-8` để hiển thị tiếng Việt chuẩn.
 - Tách rời phần logic và phần giao diện thành các file riêng.
 
 ---
@@ -67,7 +69,12 @@ flowchart TD
     C -- Phím điều hướng\nvà chưa thua --> D["Gọi diChuyen():\ndồn ô + gộp cặp bằng nhau\n+ cộng điểm"]
     D --> I{Bảng có\nthay đổi?}
     I -- Có --> J[Sinh 1 số mới\nvào ô trống]
-    J --> K{Còn nước đi\nhợp lệ?}
+    J --> W{Tạo được\nô 2048?}
+    W -- Có --> W1["Gán trạng thái thắng\nvà vẽ màn hình vàng"]
+    W1 --> W2{Hộp thoại\nchúc mừng}
+    W2 -- Chơi tiếp --> K
+    W2 -- Chơi mới --> N
+    W -- Không --> K{Còn nước đi\nhợp lệ?}
     I -- Không --> K
     K -- Còn --> H
     K -- Hết --> L["Gán trạng thái thua\nvà vẽ lớp phủ Game Over"]
@@ -203,7 +210,7 @@ cp <đường_dẫn_file_ttf> assets/font.ttf
 **Bước 4: Biên dịch và chạy game**
 ```bash
 make
-./build/Game2048
+DYLD_LIBRARY_PATH=/opt/homebrew/lib ./build/Game2048
 ```
 
 ---
